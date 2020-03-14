@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title>FAkeBnB</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <header></header>
+    <section class="container flex">
+
+    </section>
+
+    <script>
+      const section = document.querySelector('section');
+
+      var requestUrl = "https://api.sheety.co/30b6e400-9023-4a15-8e6c-16aa4e3b1e72"
+      var request = new XMLHttpRequest();
+      request.open("GET", requestUrl, false);
+      request.send();
+
+      const listaQuartos = JSON.parse(request.response);
+
+      cria_cards(listaQuartos);
+
+      function cria_cards(jsonObj){
+        var quartos = jsonObj;
+        var html = "";
+        console.log(quartos);
+
+        for(i = 0; i < quartos.length; i++){
+          html +=`
+          <div class="item">
+                  <img class="img" src="${quartos[i].photo}">
+                  <p class="tipo">${quartos[i].property_type}</p>
+                  <p class="nome">${quartos[i].name}</p>
+                  <p class="preco">${quartos[i].price}</p>
+          </div>`
+                  console.log(html)
+      }
+      section.innerHTML = html;
+    }
+
+
+    </script>
+
+  </body>
+</html>
